@@ -1,0 +1,30 @@
+{
+    "name": "student/serverless-payroll-api",
+    "description": "CSV payroll API on AWS Lambda using Bref, with PDF payslips stored in S3.",
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": "~8.2.0",
+        "ext-dom": "*",
+        "ext-mbstring": "*",
+        "bref/bref": "^3.0",
+        "dompdf/dompdf": "^3.0",
+        "aws/aws-sdk-php": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Payroll\\": "src/"
+        }
+    },
+    "scripts": {
+        "start": "@php -S localhost:8000 index.php",
+        "check-data": "@php tools/check-data.php",
+        "test": "@php tools/check.php"
+    },
+    "config": {
+        "sort-packages": true,
+        "platform": {
+            "php": "8.2.12"
+        }
+    }
+}

@@ -1,0 +1,33 @@
+{
+  "info": {
+    "name": "Serverless Payroll API - Laboratory",
+    "description": "Set collection variable baseUrl to your deployed API URL. The generate request uploads a PDF to S3.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8000", "type": "string" },
+    { "key": "payrollId", "value": "1", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "1 - Employee records",
+      "request": { "method": "GET", "header": [], "url": "{{baseUrl}}/api/employees" }
+    },
+    {
+      "name": "2 - Payroll summary",
+      "request": { "method": "GET", "header": [], "url": "{{baseUrl}}/api/reports/payroll" }
+    },
+    {
+      "name": "3 - Individual payslip JSON",
+      "request": { "method": "GET", "header": [], "url": "{{baseUrl}}/api/payslips/{{payrollId}}" }
+    },
+    {
+      "name": "4 - Generate PDF and upload to S3",
+      "request": { "method": "POST", "header": [], "url": "{{baseUrl}}/api/payslips/{{payrollId}}/generate", "description": "No request body. Performs a real S3 upload. Test after AWS deployment." }
+    },
+    {
+      "name": "5 - Missing payroll record (expect 404)",
+      "request": { "method": "GET", "header": [], "url": "{{baseUrl}}/api/payslips/999999" }
+    }
+  ]
+}
